@@ -1,0 +1,212 @@
+mati@mati-VirtualBox:~$ mkdir git-majonez
+mati@mati-VirtualBox:~$ cd git-majonez/
+mati@mati-VirtualBox:~/git-majonez$ git init 
+Zainicjowano puste repozytorium Gita w /home/mati/git-majonez/.git/
+mati@mati-VirtualBox:~/git-majonez$ touch main.cpp
+mati@mati-VirtualBox:~/git-majonez$ git add main.cpp 
+mati@mati-VirtualBox:~/git-majonez$ git commit -m"Initial commit"
+[master (zapis-korzeń) a5f7d74] Initial commit
+ 1 file changed, 6 insertions(+)
+ create mode 100644 main.cpp
+mati@mati-VirtualBox:~/git-majonez$ git status
+Na gałęzi master
+Zmiany nie przygotowane do złożenia:
+  (użyj „git add <plik>...”, żeby zmienić, co zostanie złożone)
+  (użyj „git restore <plik>...”, aby odrzucić zmiany w katalogu roboczym)
+	zmieniono:       main.cpp
+
+brak zmian dodanych do zapisu (użyj „git add” i/lub „git commit -a”)
+mati@mati-VirtualBox:~/git-majonez$ git add main.cpp 
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi master
+Zmiany do złożenia:
+  (użyj „git restore --staged <plik>...”, aby wycofać)
+	zmieniono:       main.cpp
+
+mati@mati-VirtualBox:~/git-majonez$ git commit -m"Farewell changed"
+[master 525ed3d] Farewell changed
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+mati@mati-VirtualBox:~/git-majonez$ git remote add origin https://github.com/Matii01/git-majonez.git
+mati@mati-VirtualBox:~/git-majonez$ git push -u origin master 
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+Wymienianie obiektów: 6, gotowe.
+Zliczanie obiektów: 100% (6/6), gotowe.
+Kompresja delt z użyciem do 4 wątków
+Kompresowanie obiektów: 100% (4/4), gotowe.
+Zapisywanie obiektów: 100% (6/6), 573 bajty | 573.00 KiB/s, gotowe.
+Total 6 (delta 0), reused 0 (delta 0)
+To https://github.com/Matii01/git-majonez.git
+ * [new branch]      master -> master
+Gałąź „master” ustawiona na śledzenie zdalnej gałęzi „master” z „origin”.
+mati@mati-VirtualBox:~/git-majonez$ git branch cs
+mati@mati-VirtualBox:~/git-majonez$ git checkout cs 
+Przełączono na gałąź „cs”
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi cs
+nic do złożenia, drzewo robocze czyste
+mati@mati-VirtualBox:~/git-majonez$ git show
+commit 525ed3dd732c8b101b1e8fbe269f88ba60a52b79 (HEAD -> cs, origin/master, master)
+Author: Mateusz Serafin <mateusz97.serafin@gmail.com>
+Date:   Wed Jun 30 17:57:39 2021 +0200
+
+    Farewell changed
+
+diff --git a/main.cpp b/main.cpp
+index babeaf1..50fa1b2 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -2,5 +2,5 @@
+ 
+ int main()
+ {
+-    std::cout <<"Goodbye World";
++    std::cout <<"Hello World";
+ }
+\ No newline at end of file
+mati@mati-VirtualBox:~/git-majonez$ git reflog 
+525ed3d (HEAD -> cs, origin/master, master) HEAD@{0}: checkout: moving from master to cs
+525ed3d (HEAD -> cs, origin/master, master) HEAD@{1}: commit: Farewell changed
+a5f7d74 HEAD@{2}: commit (initial): Initial commit
+mati@mati-VirtualBox:~/git-majonez$ git reset --hard 525ed3d
+HEAD wskazuje teraz 525ed3d Farewell changed
+mati@mati-VirtualBox:~/git-majonez$ git show
+commit 525ed3dd732c8b101b1e8fbe269f88ba60a52b79 (HEAD -> cs, origin/master, master)
+Author: Mateusz Serafin <mateusz97.serafin@gmail.com>
+Date:   Wed Jun 30 17:57:39 2021 +0200
+
+    Farewell changed
+
+diff --git a/main.cpp b/main.cpp
+index babeaf1..50fa1b2 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -2,5 +2,5 @@
+ 
+ int main()
+ {
+-    std::cout <<"Goodbye World";
++    std::cout <<"Hello World";
+ }
+\ No newline at end of file
+mati@mati-VirtualBox:~/git-majonez$ git log
+commit 525ed3dd732c8b101b1e8fbe269f88ba60a52b79 (HEAD -> cs, origin/master, master)
+Author: Mateusz Serafin <mateusz97.serafin@gmail.com>
+Date:   Wed Jun 30 17:57:39 2021 +0200
+
+    Farewell changed
+
+commit a5f7d747e8be57cc890e7deba72d95b73e11392c
+Author: Mateusz Serafin <mateusz97.serafin@gmail.com>
+Date:   Wed Jun 30 17:56:26 2021 +0200
+
+    Initial commit
+mati@mati-VirtualBox:~/git-majonez$ git reset --hard HEAD^
+HEAD wskazuje teraz a5f7d74 Initial commit
+mati@mati-VirtualBox:~/git-majonez$ git log
+commit a5f7d747e8be57cc890e7deba72d95b73e11392c (HEAD -> cs)
+Author: Mateusz Serafin <mateusz97.serafin@gmail.com>
+Date:   Wed Jun 30 17:56:26 2021 +0200
+
+    Initial commit
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi cs
+Zmiany nie przygotowane do złożenia:
+  (użyj „git add <plik>...”, żeby zmienić, co zostanie złożone)
+  (użyj „git restore <plik>...”, aby odrzucić zmiany w katalogu roboczym)
+	zmieniono:       main.cpp
+
+brak zmian dodanych do zapisu (użyj „git add” i/lub „git commit -a”)
+mati@mati-VirtualBox:~/git-majonez$ git commit -m"Greetings"
+Na gałęzi cs
+Zmiany nie przygotowane do złożenia:
+  (użyj „git add <plik>...”, żeby zmienić, co zostanie złożone)
+  (użyj „git restore <plik>...”, aby odrzucić zmiany w katalogu roboczym)
+	zmieniono:       main.cpp
+
+brak zmian dodanych do zapisu (użyj „git add” i/lub „git commit -a”)
+mati@mati-VirtualBox:~/git-majonez$ git add main.cpp 
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi cs
+Zmiany do złożenia:
+  (użyj „git restore --staged <plik>...”, aby wycofać)
+	zmieniono:       main.cpp
+
+mati@mati-VirtualBox:~/git-majonez$ git commit -m"Greetings"
+[cs c12af0f] Greetings
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+remote: Password authentication is temporarily disabled as part of a brownout. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-07-30-token-authentication-requirements-for-api-and-git-operations/ for more information.
+fatal: brak dostępu do „https://github.com/Matii01/git-majonez.git/”: The requested URL returned error: 403
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+remote: Password authentication is temporarily disabled as part of a brownout. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-07-30-token-authentication-requirements-for-api-and-git-operations/ for more information.
+fatal: brak dostępu do „https://github.com/Matii01/git-majonez.git/”: The requested URL returned error: 403
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Mati001
+Password for 'https://Mati001@github.com': 
+[1]+  Zatrzymano              git push origin cs
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+remote: Invalid username or password.
+fatal: Uwierzytelnienie nie powiodło się dla „https://github.com/Matii01/git-majonez.git/”
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+remote: Invalid username or password.
+fatal: Uwierzytelnienie nie powiodło się dla „https://github.com/Matii01/git-majonez.git/”
+mati@mati-VirtualBox:~/git-majonez$ git push origin cs
+Username for 'https://github.com': Matii01
+Password for 'https://Matii01@github.com': 
+Wymienianie obiektów: 5, gotowe.
+Zliczanie obiektów: 100% (5/5), gotowe.
+Kompresja delt z użyciem do 4 wątków
+Kompresowanie obiektów: 100% (2/2), gotowe.
+Zapisywanie obiektów: 100% (3/3), 324 bajty | 324.00 KiB/s, gotowe.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'cs' on GitHub by visiting:
+remote:      https://github.com/Matii01/git-majonez/pull/new/cs
+remote: 
+To https://github.com/Matii01/git-majonez.git
+ * [new branch]      cs -> cs
+mati@mati-VirtualBox:~/git-majonez$ git checkout master 
+Przełączono na gałąź „master”
+Twoja gałąź jest na bieżąco z „origin/master”.
+mati@mati-VirtualBox:~/git-majonez$ git merge cs
+Auto-scalanie main.cpp
+KONFLIKT (zawartość): Konflikt scalania w main.cpp
+Automatyczne scalanie nie powiodło się; napraw konflikty i złóż wynik.
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi master
+Twoja gałąź jest na bieżąco z „origin/master”.
+
+Masz niescalone ścieżki.
+  (napraw konflikty i wykonaj „git commit”)
+  (użyj „git merge --abort”, aby przerwać scalanie)
+
+Niescalone ścieżki
+  (użyj „git add <plik>...” aby zaznaczyć rozwiązanie)
+	oba zmienione:       main.cpp
+
+brak zmian dodanych do zapisu (użyj „git add” i/lub „git commit -a”)
+mati@mati-VirtualBox:~/git-majonez$ git add main.cpp 
+mati@mati-VirtualBox:~/git-majonez$ git status 
+Na gałęzi master
+Twoja gałąź jest na bieżąco z „origin/master”.
+
+Wszystkie konflikty naprawione, ale wciąż trwa scalanie.
+  (użyj „git commit”, żeby zwieńczyć scalanie)
+
+Zmiany do złożenia:
+	zmieniono:       main.cpp
+
+mati@mati-VirtualBox:~/git-majonez$ git commit -m"Merge branch 'cs'"
+[master 866b0de] Merge branch 'cs'
+
